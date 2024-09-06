@@ -3,6 +3,8 @@
 Content/Collections/
 Content/Developers/
 .idea/
+/Benchmark
+/Plugins/UnLua/Source/UnLuaDefaultParamCollectorUbtPlugin/obj
 
 # Visual Studio 2015 user specific files
 .vs/
