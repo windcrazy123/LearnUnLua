@@ -1,3 +1,9 @@
+#
+**/.DS_Store
+Content/Collections/
+Content/Developers/
+.idea/
+
 # Visual Studio 2015 user specific files
 .vs/
 
