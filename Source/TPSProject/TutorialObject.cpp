@@ -37,25 +37,25 @@ static int32 FTutorialObject_New(lua_State* L)
     return 1;
 }
 
-//如何自定义？？？？？？？？？？？？？？？？？？LuaArray.h  LuaLib_FVector.cpp
+//D:\UEProjects\LearnUnLua\Plugins\UnLua\Source\UnLua\Private\ReflectionUtils\FunctionDesc.cpp
+//459 line:  if (lua_pcall(L, NumParams, LUA_MULTRET, -(NumParams + 2)) != LUA_OK)
+//lua_pcall在某次调用中会调用到此函数，因此只能返回0或1
+//获取L后将所需要的元素取出(从TValue转到FString)然后再将想要输出的值push到栈中，我们在lua文件中获取的值是我们放入的值
+//lua 堆栈介绍: https://blog.csdn.net/lishenglong666/article/details/109991788
 static int32 MyFunction(lua_State* L)
 {
     const auto ParamNum = lua_gettop(L);
-    if (ParamNum == 9)
+    if (ParamNum != 2)
     {
-        return ParamNum;
+        return 0;
     }
     const char* String = lua_tostring(L,2);
-    if (String)
-    {
-        return 8;
-    }
-    const int n = lua_tointeger(L,3);
-    if (n)
-    {
-        return n;
-    }
-    return 0;
+    FString str = String;
+    str.Append("hhhhh");
+    /*char s[1024]= "hhh";
+    strcat_s(s,String);*/
+    lua_pushfstring(L,TCHAR_TO_ANSI(*str));
+    return true;
 }
 
 //__call 元方法

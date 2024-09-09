@@ -899,7 +899,10 @@ static void aux_rawset (lua_State *L, int idx, TValue *key, int n) {
   lua_unlock(L);
 }
 
-
+/*描述: 为table中的key赋值. t[k] = v . 其中t是index处的table , v为栈顶元素. k为-2处的元素. 
+    这个函数不会触发newindex元方法. lua_settable 可能触发
+    调用完成后弹出栈顶两个元素(key , value)
+详情： https://www.zhyingkun.com/luadetail/luadetail/#table */
 LUA_API void lua_rawset (lua_State *L, int idx) {
   aux_rawset(L, idx, s2v(L->top - 2), 2);
 }

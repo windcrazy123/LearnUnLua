@@ -17,9 +17,9 @@ function M:ReceiveBeginPlay()
     ]]
     Screen.Print(msg)
     
-    local tutorial = UE.FTutorialObject("MyName",1)
+    local tutorial = UE.FTutorialObject("MyName",1)--调用 __call 元方法
     msg = string.format("tutorial -> %s\n\n tutorial:GetTitle() -> %s", tostring(tutorial), tutorial:GetTitle())
-    local ParamNum = UE.FTutorialObject.MyFunctionName("hh",3)
+    local ParamNum = tutorial:MyFunctionName("3457")
     print("ParamNum",ParamNum)
     Screen.Print(msg)
 end
