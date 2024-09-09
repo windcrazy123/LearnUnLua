@@ -50,7 +50,7 @@ local function SetupKeyBindings()
 end
 
 function M:Fire_Pressed()
-    Screen.Print("fire,fire,fire")
+    Screen.Print("fire,fire")
 end
 
 local function SetupAxisBindings()

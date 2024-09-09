@@ -3,9 +3,6 @@
 
 #include "TPSCharacter.h"
 
-#include "Blueprint/UserWidget.h"
-#include "Slate/WidgetTransform.h"
-
 // Sets default values
 ATPSCharacter::ATPSCharacter()
 {
@@ -19,9 +16,6 @@ void ATPSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FWidgetTransform(FVector2d(1,1),FVector2d(2,2),FVector2d(3,3), 0);
-	UUserWidget* UserWidget;
-	NewObject<>(,)
 }
 
 // Called every frame

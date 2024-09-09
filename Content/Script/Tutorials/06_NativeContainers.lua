@@ -33,8 +33,7 @@ local function print_intro()
 数字3：TMap
 
 —— 本示例来自 "Content/Script/Tutorials.06_NativeContainers.lua"
-]] ..
-        "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+]].."\n\n\n"
     Screen.Print(msg)
 end
 
@@ -150,4 +149,9 @@ function M:Three_Pressed()
     print("Clear:        ", dump_map(map))
 end
 
+function M:Four_Pressed()
+    local t = [[d
+    ]]
+    Screen.Print(t)
+end
 return M

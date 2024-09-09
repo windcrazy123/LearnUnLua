@@ -5,7 +5,11 @@
     绑定/解绑成对出现，是编写代码的良好习惯
 ]]--
 
+--https://github.com/Tencent/UnLua/blob/master/Docs/CN/UnLua_Programming_Guide.md#%E5%A7%94%E6%89%98 : 委托
+
+--======================Bind with UMG_BindDelegates
 local FLinearColor = UE.FLinearColor
+local FloatTrack = UE.FTimelineFloatTrack
 
 local M = UnLua.Class()
 
@@ -45,6 +49,16 @@ function M:Destruct()
 
     -- 相当于在蓝图中的 Clear and Invalidate Timer by Handle
     UE.UKismetSystemLibrary.K2_ClearAndInvalidateTimerHandle(self, self.TimerHandle)
+end
+
+
+--================Bind with BindDelegates map
+function M:ReceiveBeginPlay()
+    local foo = {self,self.Test}
+    UE.UKismetSystemLibrary.K2_SetTimerDelegate(foo, 1, true)
+end
+function M:Test()
+    print(1)
 end
 
 return M

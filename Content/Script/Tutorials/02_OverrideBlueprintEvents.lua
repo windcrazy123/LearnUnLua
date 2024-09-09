@@ -19,6 +19,8 @@
 --local dbg = require('emmy_core')
 --dbg.tcpConnect('localhost', 9966)
 
+--https://github.com/Tencent/UnLua/issues/722 : lua重写ReceiveBeginPlay，加上蓝图调用【父类：ReceiveBeginPlay】的时候，会出问题
+
 local Screen = require "Tutorials.Screen"
 
 local M = UnLua.Class()

@@ -43,9 +43,9 @@ function M:RightMouseButton_Pressed()
         imgo:RandomPosition()
         
     else
-        img = NewObject(WidgetClass, self, nil, "Tutorials.IconWidget")
+        img = NewObject(WidgetClass, self, "MainImg", "Tutorials.IconWidget")--打印的log会显示LogBlueprintUserMessages: [MainImg] X=500.000 Y=1.000X=1.000 Y=1.000X=0.000 Y=0.000100.0
         img:AddToViewport()
-        --img:RandomPosition()
+        img:RandomPosition()
     end
     
     --img:AddToViewport()

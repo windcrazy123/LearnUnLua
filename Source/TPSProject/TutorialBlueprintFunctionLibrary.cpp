@@ -8,6 +8,8 @@ static void PrintScreen(const FString& Msg)
     UKismetSystemLibrary::PrintString(nullptr, Msg, true, false, FLinearColor(0, 0.66, 1), 100);
 }
 
+//UnLua浅析（一）：UECallLua、LuaCallUE : https://mytechplayer.com/archives/unlua%E6%B5%85%E6%9E%90%E4%B8%80uecalllualuacallue
+    
 void UTutorialBlueprintFunctionLibrary::CallLuaByGlobalTable()
 {
     PrintScreen(TEXT("[C++]CallLuaByGlobalTable 开始"));

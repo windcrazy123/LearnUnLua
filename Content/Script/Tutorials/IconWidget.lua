@@ -15,10 +15,11 @@ function M:RandomPosition()
     --self:SetAlignmentInViewPort(FVector2D(0.5,0.5))
 print("rrrrrrrrrrttttttttttttttt")
     local widgetTransform = FWidgetTransform();
-    widgetTransform.Translation = FVector2D(500,1)
+    widgetTransform.Translation = FVector2D(x,y)
     widgetTransform.Angle = 100
     
-    self:SetRenderTransform(--[[FTransform(FVector(1,0,0),FVector(2,1,1),FVector(1,1,3))]]widgetTransform)
+    --self:SetRenderTransform(--[[FTransform(FVector(1,0,0),FVector(2,1,1),FVector(1,1,3))]]widgetTransform)
+    self:SetRenderTransfor(--[[FTransform(FVector(1,0,0),FVector(2,1,1),FVector(1,1,3))]]widgetTransform)
     
 end
 

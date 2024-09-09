@@ -8,6 +8,8 @@ Content/Developers/
 
 # Visual Studio 2015 user specific files
 .vs/
+*.vsconfig
+/TPSProject.sln.DotSettings.user
 
 # Compiled Object files
 *.slo
