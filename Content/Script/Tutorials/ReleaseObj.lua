@@ -3,3 +3,22 @@
 --- Created by windcrazy_LBD.
 --- DateTime: 2024/9/10 15:33
 ---
+
+---@type ReleaseObj_C
+local M = UnLua.Class()
+
+--function M:UserConstructionScript()
+--    print("UserConstructionScript!")
+--end
+--
+--function M:Construct()
+--    print("oBJChild Construct")
+--end
+
+function M:Destroy()
+    print("ObjChild Destruct")
+    self:Release()
+end
+
+
+return M

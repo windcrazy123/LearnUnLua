@@ -4,7 +4,7 @@
     UMG对象的释放流程：
     1、调用self:Release()，解除LuaTable在C++侧的引用
     2、确保LuaTable在Lua侧没有其他引用，触发LuaGC
-    3、C++侧收到UObject_Delete回调，解除UMG在C++侧的引用
+    3、C++侧收到UObject_Delete回调(__gc元方法触发回调这个函数)，解除UMG在C++侧的引用
     4、确保UMG在C++侧没有其他引用，触发UEGC
 
     小提示：
@@ -32,6 +32,16 @@ L：强制 Lua GC
     Screen.Print(msg)
 end
 
+--D:\UEProjects\LearnUnLua\Plugins\UnLua\Source\UnLua\Private\BaseLib\LuaLib_Class.cpp
+--[[
+UE.UClass.Load
+int32 UClass_Load(lua_State* L)
+{
+    ...
+    UClass* Class = LoadObject<UClass>(nullptr, *Name);
+    ...
+}
+]]
 function M:ReceiveBeginPlay()
     local widget_class = UE.UClass.Load("/Game/Tutorials/11_ReleaseUMG/ReleaseUMG_Root.ReleaseUMG_Root_C")
     local widget_root = NewObject(widget_class, self)

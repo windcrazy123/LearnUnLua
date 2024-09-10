@@ -1,3 +1,16 @@
+--[[
+    说明：
+    
+    使用 {函数名}_RPC 可以覆盖蓝图中RPC函数的实现
+    使用 OnRep_{变量名} 可以覆盖蓝图中变量同步消息的处理
+
+    蓝图示例：
+    Content/Tutorials/10_Replications/ChatCharacter.uasset
+
+    脚本示例：
+    Content/Script/Tutorials/ChatCharacter.lua
+]] --
+
 ---@type ChatCharacter_C
 local M = UnLua.Class()
 

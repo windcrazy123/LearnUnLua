@@ -67,6 +67,8 @@ static const luaL_Reg FTutorialObjectLib[] =
     { nullptr, nullptr }
 };
 
+
+//静态导出: https://github.com/Tencent/UnLua/blob/master/Docs/CN/StaticExportBinding.md#静态导出
 BEGIN_EXPORT_CLASS(FTutorialObject)
 ADD_FUNCTION(GetTitle)
 //
