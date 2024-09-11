@@ -15,25 +15,29 @@ local Screen = require "Tutorials.Screen"
 local M = UnLua.Class()
 
 local function print_intro()
-    local msg =
-        [[
-
-—— 本示例来自 "Content/Script/Tutorials.12_CustomLoader.lua"
-]]
+    local msg = [[
+    —— 本示例来自 "Content/Script/Tutorials.12_CustomLoader.lua"
+    ]]
     Screen.Print(msg)
 end
 
 function M:ReceiveBeginPlay()
     print_intro()
 
-    UE.UTutorialBlueprintFunctionLibrary.SetupCustomLoader(1)
-    Screen.Print(string.format("FromCustomLoader1:%s", require("Tutorials")))
+    --==========
+    --[[UE.UTutorialBlueprintFunctionLibrary.SetupCustomLoader(1)
+    local LoadedFile = require("Tutorials")
+    Screen.Print(string.format("FromCustomLoader1:%s", LoadedFile))
+    LoadedFile.IndexFunc()]]
+    --==========
     
-    package.loaded["Tutorials"] = nil
+    --package.loaded["Tutorials"] = nil
 
-    package.path = package.path .. ";./?/Index.lua"
+    --==========
+    package.path = package.path .. ";./?/Index.lua"--其中?会被require中的model name代替后再与Script路径连接
     UE.UTutorialBlueprintFunctionLibrary.SetupCustomLoader(2)
     Screen.Print(string.format("FromCustomLoader2:%s", require("Tutorials")))
+    --==========
 
     UE.UTutorialBlueprintFunctionLibrary.SetupCustomLoader(0)
 end

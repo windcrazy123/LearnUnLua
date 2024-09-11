@@ -45,6 +45,13 @@ void UTutorialBlueprintFunctionLibrary::CallLuaByFLuaTable()
     PrintScreen(TEXT("[C++]CallLuaByFLuaTable 结束"));
 }
 
+//D:\UEProjects\LearnUnLua\Plugins\UnLua\Source\UnLua\Private\UnLuaLegacy.cpp
+//GLuaSrcFullPath定义在73行
+/*
+* FString GLuaSrcRelativePath = TEXT("Script/");
+FString GLuaSrcFullPath = FPaths::ConvertRelativePathToFull(FPaths::ProjectContentDir() + GLuaSrcRelativePath);
+ */
+//LoadFromCustomLoader调用此函数 D:\UEProjects\LearnUnLua\Plugins\UnLua\Source\UnLua\Private\LuaEnv.cpp 557 line
 bool CustomLoader1(UnLua::FLuaEnv& Env, const FString& RelativePath, TArray<uint8>& Data, FString& FullPath)
 {
     const auto SlashedRelativePath = RelativePath.Replace(TEXT("."), TEXT("/"));
@@ -63,9 +70,11 @@ bool CustomLoader1(UnLua::FLuaEnv& Env, const FString& RelativePath, TArray<uint
 bool CustomLoader2(UnLua::FLuaEnv& Env, const FString& RelativePath, TArray<uint8>& Data, FString& FullPath)
 {
     const auto SlashedRelativePath = RelativePath.Replace(TEXT("."), TEXT("/"));
+    
+    //获取path
     const auto L = Env.GetMainState();
-    lua_getglobal(L, "package");
-    lua_getfield(L, -1, "path");
+    lua_getglobal(L, "package");//从lua脚本中获取一个name参数描述的变量，放到栈顶
+    lua_getfield(L, -1, "path");//index指出栈中t表的位置，取t[k]的值放到栈顶，k为t的key值
     const char* Path = lua_tostring(L, -1);
     lua_pop(L, 2);
     if (!Path)
