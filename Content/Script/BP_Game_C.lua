@@ -3,6 +3,7 @@ local M = UnLua.Class()
 
 function M:ReceiveBeginPlay()
 	self.EnemySpawnInterval = 2.0
+	--self.Test = 39
 	self.MaxEnemies = 4
 	self.AliveEnemies = 0
 	self.SpawnOrigin = UE.FVector(650.0, 0.0, 100.0)

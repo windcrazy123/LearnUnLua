@@ -41,9 +41,9 @@ function M:ReceiveDestroyed()
 	UE.UKismetSystemLibrary.K2_ClearTimerHandle(self, self.TimerHandle)
 end
 
-function M:UpdateAiming(IsAiming)
+function M:UpdateAiming(bIsAiming)
 	if self.Weapon then
-		if IsAiming then
+		if bIsAiming then
 			self.ZoomInOut:Play()
 		else
 			self.ZoomInOut:Reverse()

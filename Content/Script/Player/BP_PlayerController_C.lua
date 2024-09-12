@@ -23,7 +23,7 @@ function M:Turn(AxisValue)
 	self:AddYawInput(AxisValue)
 end
 
-function M:TurnRate(AxisValue)
+function M:TurnRate(AxisValue)--Gamepad
 	local DeltaSeconds = UE.UGameplayStatics.GetWorldDeltaSeconds(self)
 	local Value = AxisValue * DeltaSeconds * self.BaseTurnRate
 	self:AddYawInput(Value)
@@ -33,7 +33,7 @@ function M:LookUp(AxisValue)
 	self:AddPitchInput(AxisValue)
 end
 
-function M:LookUpRate(AxisValue)
+function M:LookUpRate(AxisValue)--Gamepad
 	local DeltaSeconds = UE.UGameplayStatics.GetWorldDeltaSeconds(self)
 	local Value = AxisValue * DeltaSeconds * self.BaseLookUpRate
 	self:AddPitchInput(Value)
@@ -73,15 +73,17 @@ end
 
 function M:Aim_Pressed()
 	if self.Pawn then
-		local BPI_Interfaces = UE.UClass.Load("/Game/Core/Blueprints/BPI_Interfaces.BPI_Interfaces_C")
-		BPI_Interfaces.UpdateAiming(self.Pawn, true)
+		--[[local BPI_Interfaces = UE.UClass.Load("/Game/Core/Blueprints/BPI_Interfaces.BPI_Interfaces_C")
+		BPI_Interfaces.UpdateAiming(self.Pawn, true)]]
+		self.Pawn:UpdateAiming(true)
 	end
 end
 
 function M:Aim_Released()
 	if self.Pawn then
-		local BPI_Interfaces = UE.UClass.Load("/Game/Core/Blueprints/BPI_Interfaces.BPI_Interfaces_C")
-		BPI_Interfaces.UpdateAiming(self.Pawn, false)
+		--[[local BPI_Interfaces = UE.UClass.Load("/Game/Core/Blueprints/BPI_Interfaces.BPI_Interfaces_C")
+		BPI_Interfaces.UpdateAiming(self.Pawn, false)]]
+		self.Pawn:UpdateAiming(false)
 	end
 end
 

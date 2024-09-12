@@ -83,8 +83,9 @@ function M:InstantFire()
 end
 
 function M:GetFireInfo()
-	local UBPI_Interfaces = UE.UClass.Load("/Game/Core/Blueprints/BPI_Interfaces.BPI_Interfaces_C")
-	local TraceStart, TraceDirection = UBPI_Interfaces.GetWeaponTraceInfo(self.Instigator)
+	--[[local UBPI_Interfaces = UE.UClass.Load("/Game/Core/Blueprints/BPI_Interfaces.BPI_Interfaces_C")
+	local TraceStart, TraceDirection = UBPI_Interfaces.GetWeaponTraceInfo(self.Instigator)]]
+	local TraceStart, TraceDirection = self.Instigator:GetWeaponTraceInfo()
 	local Delta = TraceDirection * self.WeaponTraceDistance
 	local TraceEnd = TraceStart + Delta
 	local HitResult = UE.FHitResult()

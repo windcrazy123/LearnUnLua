@@ -9,7 +9,6 @@
 
 --======================Bind with UMG_BindDelegates
 local FLinearColor = UE.FLinearColor
-local FloatTrack = UE.FTimelineFloatTrack
 
 local M = UnLua.Class()
 
@@ -53,12 +52,29 @@ end
 
 
 --================Bind with BindDelegates map
+--[[---TimelineComponent holds a series of events, floats, vectors or colors with associated keyframes.
+---Events can be triggered at keyframes along the timeline.
+---Floats, vectors, and colors are interpolated between keyframes along the timeline.
+---@class UTimelineComponent : UActorComponent
+---@field private TheTimeline FTimeline @The actual timeline structure
+---@field private bIgnoreTimeDilation boolean @True if global time dilation should be ignored by this timeline, false otherwise.
+local UTimelineComponent = {}]]
 function M:ReceiveBeginPlay()
-    local foo = {self,self.Test}
-    UE.UKismetSystemLibrary.K2_SetTimerDelegate(foo, 1, true)
+    local InterpFloats = self.TestTimeline.TheTimeline.InterpFloats
+    local FloatTrack = InterpFloats:GetRef(1)
+    FloatTrack.InterpFunc:Bind(self, M.Test)
+    self.TestTimeline:Play()
+    coroutine.resume(coroutine.create(M.DelayTime),self)
 end
-function M:Test()
-    print(1)
+
+function M:Test(alpha)
+    local d = UE.UKismetMathLibrary.Lerp(0,1,alpha)
+    print(d)
+end
+
+function M:DelayTime()
+    UE.UKismetSystemLibrary.Delay(self,1)
+    self.TestTimeline:Reverse()
 end
 
 return M
